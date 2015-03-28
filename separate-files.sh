@@ -14,10 +14,10 @@ for filename in `find $1 -iname "*.nef"` ; do
 
     pathprefix="${filename%.*}"
 
-    if [ -e "${pathprefix}.jpg" ]; then
-        pathfrom="${pathprefix}.jpg" ;
-    elif [ -e "${pathprefix}.JPG" ]; then
+    if [ -e "${pathprefix}.JPG" ]; then
         pathfrom="${pathprefix}.JPG" ;
+    elif [ -e "${pathprefix}.jpg" ]; then
+        pathfrom="${pathprefix}.jpg" ;
     fi
 
     if [ -n "$pathfrom" ]; then
