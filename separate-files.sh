@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 2 ]; then
-    printf "The correct usage: dupe-finder <srcdir> <destdir>\n"
+    printf "The correct usage: separate-files <srcdir> <destdir>\n"
     printf "where <scrdir> - the directory to start search from recursively\n"
     printf "      <destdir> - the directory to MOVE dupes to\n"
 else
@@ -9,7 +9,11 @@ else
 srcdir=$1
 destdir=$2
 
-for filename in `find $1 -iname "*.nef"` ; do
+# reading all the files to process
+saveIFS="$IFS"; IFS=$'\n'; files=( $(find "$1" -iname "*.nef" -type f) ); IFS="$saveIFS"
+
+
+for filename in "${files[@]}" ; do
     printf "$filename:"
 
     pathprefix="${filename%.*}"
